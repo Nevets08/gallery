@@ -1,6 +1,6 @@
 <?php
 
-require 'Manager.php';
+require_once 'Manager.php';
 
 class ImagesManager extends Manager
 {
@@ -46,10 +46,10 @@ class ImagesManager extends Manager
     {
         $pdo = self::dbConnect();
 
-        $sql = 'SELECT * FROM images WHERE keywords = :keywords';
+        $sql = 'SELECT * FROM images WHERE keywords LIKE :keywords';
         $searchImages = $pdo->prepare($sql);
         $searchImages->execute([
-            "keywords" => $keywords,
+            "keywords" => '%' . $keywords . '%',
         ]);
 
         return $searchImages;

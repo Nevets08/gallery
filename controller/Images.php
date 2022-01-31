@@ -1,6 +1,6 @@
 <?php
 
-require './model/ImagesManager.php';
+require_once './model/ImagesManager.php';
 
 class Images
 {
@@ -17,8 +17,6 @@ class Images
 
     public static function store()
     {
-        require './view/imagesForm.php';
-
         if (isset($_FILES['file'])) {
             $tmpName = $_FILES['file']['tmp_name'];
             $name = $_FILES['file']['name'];

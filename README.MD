@@ -6,5 +6,6 @@ Filtres
 Commentaires
 Pagination
 Download
+Création de comptes : password caracteres
 
 -> Améliorer la recherche (mot clés, aucun resultat)
