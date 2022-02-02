@@ -1,11 +1,11 @@
-<?php 
+<?php
 
 ob_start();
 
 ?>
 
 <div class="container">
-    <h1>Résultats pour : <?= $_POST['search'] ?></h1>
+    <h1><?= $searchImages->rowCount() ?> résultat<?= $searchImages->rowCount() > 1 ? 's' : ''; ?> pour : <?= $_POST['search'] ?></h1>
     <div class="row mt-3">
         <?php foreach ($searchImages as $searchImage) : ?>
             <div class="col-4 d-flex align-items-center">

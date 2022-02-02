@@ -1,8 +1,6 @@
 <?php
 
 require './view/header.php';
-require './controller/Users.php';
-require './controller/Images.php';
 
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'create') {

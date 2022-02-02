@@ -8,7 +8,7 @@ class ImagesManager extends Manager
     {
         $pdo = self::dbConnect();
 
-        $sql = 'SELECT * FROM images';
+        $sql = 'SELECT * FROM images ORDER BY idImages DESC';
         $selectImages = $pdo->prepare($sql);
         $selectImages->execute();
 

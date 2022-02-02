@@ -52,6 +52,8 @@ class Images
             require './view/searchResults.php';
 
             return $searchImages;
+        } else {
+            self::index();
         }
     }
 
