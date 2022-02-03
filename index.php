@@ -11,6 +11,8 @@ if (isset($_GET['action'])) {
         Images::detail();
     } else if ($_GET['action'] == 'create-account') {
         Users::store();
+    } else if ($_GET['action'] == 'login') {
+        Users::login();
     }
 } else {
     Images::index();

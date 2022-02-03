@@ -17,4 +17,17 @@ class UsersManager extends Manager
             "password" => password_hash($password, PASSWORD_BCRYPT)
         ]);
     }
+
+    public static function findUser($email)
+    {
+        $pdo = self::dbConnect();
+
+        $sql = 'SELECT * FROM users WHERE email = :email';
+        $findUser = $pdo->prepare($sql);
+        $findUser->execute([    
+            "email" => $email
+        ]);
+
+        return $findUser;
+    }
 }

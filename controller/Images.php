@@ -6,8 +6,7 @@ class Images
 {
     public static function index()
     {
-        $imagesManager = new ImagesManager();
-        $selectImages = $imagesManager->getImages();
+        $selectImages = ImagesManager::getImages();
 
         require './view/searchForm.php';
         require './view/imageResults.php';

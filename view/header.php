@@ -24,7 +24,7 @@ require './controller/Images.php';
             <a class="nav-link" href="?action=create">Importer</a>
           </li>
         </ul>
-        <?= Users::isUserLoggedIn() ? '<span class="navbar-text">' . $_SESSION['name'] . ' ' . $_SESSION['lastname'] . '</span>' .  '<a class="link-danger" href="./view/signout.php">Se déconnecter</a>' : null; ?>
+        <?= Users::isUserLoggedIn() ? '<span class="navbar-text">' . $_SESSION['name'] . ' ' . $_SESSION['lastname'] . '</span>' .  '<a class="link-danger m-2" href="./view/signout.php">Se déconnecter</a>' : null; ?>
       </div>
     </div>
   </nav>

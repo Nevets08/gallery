@@ -2,7 +2,7 @@
 
 <div class="container">
     <h1>Rejoignez la communauté de Super Uploader</h1>
-    <p>Vous avez déjà un compte ? <a href="">Se connecter</a></p>
+    <p>Vous avez déjà un compte ? <a href="?action=login">Se connecter</a></p>
     <form action="?action=create-account" method="POST">
         <div class="row">
             <div class="col-6">
