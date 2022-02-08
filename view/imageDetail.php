@@ -2,11 +2,12 @@
 
 <div class="container">
     <button class="btn btn-primary mb-3"><i class="bi bi-download"></i> Télécharger (0.5 mo)</button>
-    <div class="d-flex d-flex justify-content-center">
+    <!-- <div class="d-flex justify-content-center"> -->
         <?php foreach ($detailImage as $image) : ?>
+            <p>Mot clés : <?= $image['keywords'] ?></p>
             <img class="img-fluid" src="./public/upload/<?= $image['url'] ?>">
         <?php endforeach; ?>
-    </div>
+    <!-- </div> -->
 </div>
 
 <?php

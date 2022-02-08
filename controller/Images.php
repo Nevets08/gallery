@@ -4,9 +4,20 @@ require_once './model/ImagesManager.php';
 
 class Images
 {
+    public static $currentPage;
+    public static $imagesPerPage = 5;
+
     public static function index()
     {
-        $selectImages = ImagesManager::getImages();
+        self::$currentPage = (int)($_GET['page'] ?? 1);
+
+        if (self::$currentPage <= 0) {
+            header("Location: index.php?page=1");
+        }
+
+        $minimumLimit = (self::$currentPage - 1) * self::$imagesPerPage;
+
+        $selectImages = ImagesManager::getImages(self::$imagesPerPage, $minimumLimit);
 
         require './view/searchForm.php';
         require './view/imageResults.php';
@@ -30,13 +41,14 @@ class Images
             $maxSize = 1048576;
 
             if (in_array($extension, $extensions) && $size <= $maxSize && $error == 0) {
-                $imagesManager = new ImagesManager();
-                $imagesManager->insertImages($name, $_POST['keyword']);
+                ImagesManager::insertImages($name, $_POST['keyword'], $_SESSION['id']);
 
                 move_uploaded_file($tmpName, './public/upload/' . $name);
 
                 header("Location: /gallery/index.php");
             } else {
+                require './view/imagesForm.php';
+
                 echo '<p class="alert alert-danger">Erreur : fichier trop volumieux ou extension non prise en charge</p>';
             }
         }

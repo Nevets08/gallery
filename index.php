@@ -9,6 +9,8 @@ if (isset($_GET['action'])) {
         Images::search();
     } else if ($_GET['action'] == 'detail') {
         Images::detail();
+    } else if ($_GET['action'] == 'create-image') {
+        Images::store();
     } else if ($_GET['action'] == 'create-account') {
         Users::store();
     } else if ($_GET['action'] == 'login') {

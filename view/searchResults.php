@@ -9,7 +9,9 @@ ob_start();
     <div class="row mt-3">
         <?php foreach ($searchImages as $searchImage) : ?>
             <div class="col-4 d-flex align-items-center">
-                <img class="img-fluid" src="./public/upload/<?= $searchImage['url'] ?>">
+                <a href="?action=detail&id=<?= $searchImage['idImages'] ?>">
+                    <img class="img-fluid" src="./public/upload/<?= $searchImage['url'] ?>">
+                </a>
             </div>
         <?php endforeach ?>
     </div>

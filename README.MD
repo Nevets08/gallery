@@ -8,4 +8,4 @@ Pagination
 Download
 Création de comptes : password caracteres
 
--> Améliorer la recherche (mot clés, aucun resultat)
+- Améliorer la recherche (mot clés, aucun resultat)

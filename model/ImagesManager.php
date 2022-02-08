@@ -4,11 +4,11 @@ require_once 'Manager.php';
 
 class ImagesManager extends Manager
 {
-    public static function getImages()
+    public static function getImages($imagesPerPage, $limitMin)
     {
         $pdo = self::dbConnect();
 
-        $sql = 'SELECT * FROM images ORDER BY idImages DESC';
+        $sql = 'SELECT * FROM images ORDER BY createdAt DESC LIMIT ' . $imagesPerPage . ' OFFSET ' . $limitMin . '';
         $selectImages = $pdo->prepare($sql);
         $selectImages->execute();
 
@@ -32,11 +32,12 @@ class ImagesManager extends Manager
     {
         $pdo = self::dbConnect();
 
-        $sql = 'INSERT INTO images (url, keywords) VALUES (:url, :keywords)';
+        $sql = 'INSERT INTO images (url, keywords, idUser) VALUES (:url, :keywords, :idUser)';
         $insertImages = $pdo->prepare($sql);
         $insertImages->execute([
             "url" => $url,
-            "keywords" => $keywords
+            "keywords" => $keywords,
+            "idUser" => $_SESSION['id']
         ]);
 
         return $insertImages;
