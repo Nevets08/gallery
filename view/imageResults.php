@@ -10,9 +10,10 @@ ob_start();
             <p class="alert alert-danger">Il n'y a aucune image sur cette page</p>
             <a class="btn btn-primary col-2" href="index.php">Retourner à l'accueil</a>
         <?php endif; ?>
+
         <?php foreach ($selectImages as $selectImage) : ?>
             <div class="col-4 mt-4 d-flex align-items-center">
-                <a href="?action=detail&id=<?= $selectImage['idImages'] ?>">
+                <a href="?action=detail&id=<?= $selectImage['id'] ?>">
                     <img class="img-fluid" src="../../gallery/public/upload/<?= $selectImage['url'] ?>">
                 </a>
             </div>

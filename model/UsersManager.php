@@ -8,7 +8,7 @@ class UsersManager extends Manager
     {
         $pdo = self::dbConnect();
 
-        $sql = 'INSERT INTO users (name, lastname, email,password) VALUES (:name, :lastname, :email, :password)';
+        $sql = 'INSERT INTO users (name, lastname, email, password) VALUES (:name, :lastname, :email, :password)';
         $insertUser = $pdo->prepare($sql);
         $insertUser->execute([
             "name" => $name,

@@ -19,7 +19,7 @@ class ImagesManager extends Manager
     {
         $pdo = self::dbConnect();
 
-        $sql = 'SELECT * FROM images WHERE idImages = :id';
+        $sql = 'SELECT * FROM images WHERE id = :id';
         $detailImage = $pdo->prepare($sql);
         $detailImage->execute([
             "id" => $id,
@@ -54,5 +54,18 @@ class ImagesManager extends Manager
         ]);
 
         return $searchImages;
+    }
+
+    public static function authorOfTheImage($id)
+    {
+        $pdo = self::dbConnect();
+
+        $sql = 'SELECT name, lastname FROM users INNER JOIN images ON images.idUser = users.id WHERE images.id = :id LIMIT 1';
+        $imageAuthor = $pdo->prepare($sql);
+        $imageAuthor->execute([
+            "id" => $id
+        ]);
+
+        return $imageAuthor;
     }
 }

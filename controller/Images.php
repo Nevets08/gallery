@@ -71,12 +71,14 @@ class Images
     public static function detail()
     {
         if (isset($_GET['id']) && $_GET['id'] > 0) {
-            $imagesManager = new ImagesManager();
-            $detailImage = $imagesManager->getImage($_GET['id']);
+            $detailImage = ImagesManager::getImage($_GET['id']);
+            $imageAuthor = ImagesManager::authorOfTheImage($_GET['id']);
+
+            $details = [$detailImage, $imageAuthor];
 
             require './view/imageDetail.php';
 
-            return $detailImage;
+            return $details;
         }
     }
 }

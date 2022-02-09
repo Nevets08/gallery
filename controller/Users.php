@@ -57,12 +57,12 @@ class Users
 
                 if (password_verify($_POST['password'], $data[0]['password'])) {
                     $_SESSION['LOGGED_USER'] = true;
-                    $_SESSION['id'] = $data[0]['idUser'];
+                    $_SESSION['id'] = $data[0]['id'];
                     $_SESSION['name'] = $data[0]['name'];
                     $_SESSION['lastname'] = $data[0]['lastname'];
                     $_SESSION['email'] = $data[0]['email'];
                     $_SESSION['signin_date'] = $data[0]['signin_date'];
-
+     
                     header("Location: ./?action=create");
                 } else {
                     echo '<p class="alert alert-danger">Les identifiants ne correspondent pas !</p>';
@@ -79,7 +79,7 @@ class Users
 
             $data = $findUser->fetchAll();
 
-            $_SESSION['id'] = $data[0]['idUser'];
+            $_SESSION['id'] = $data[0]['id'];
             $_SESSION['name'] = $data[0]['name'];
             $_SESSION['lastname'] = $data[0]['lastname'];
             $_SESSION['email'] = $data[0]['email'];
