@@ -28,7 +28,7 @@ class Users
 
                     self::infosSessionUser();
                     $_SESSION['LOGGED_USER'] = true;
-                    
+
                     header("Location: ./?action=create");
                 }
             } else {
@@ -39,6 +39,11 @@ class Users
         }
     }
 
+    public static function edit()
+    {
+        echo 'yo';
+    }
+
     public static function isUserLoggedIn(): bool
     {
         return !empty($_SESSION['LOGGED_USER']);
@@ -47,7 +52,7 @@ class Users
     public static function login()
     {
         require './view/loginForm.php';
-        
+
         if (isset($_POST['email']) && isset($_POST['password'])) {
             $findUser = UsersManager::findUser($_POST['email']);
 
@@ -62,7 +67,8 @@ class Users
                     $_SESSION['lastname'] = $data[0]['lastname'];
                     $_SESSION['email'] = $data[0]['email'];
                     $_SESSION['signin_date'] = $data[0]['signin_date'];
-     
+                    $_SESSION['roles'] = $data[0]['roles'];
+
                     header("Location: ./?action=create");
                 } else {
                     echo '<p class="alert alert-danger">Les identifiants ne correspondent pas !</p>';
@@ -84,10 +90,24 @@ class Users
             $_SESSION['lastname'] = $data[0]['lastname'];
             $_SESSION['email'] = $data[0]['email'];
             $_SESSION['signin_date'] = $data[0]['signin_date'];
+            $_SESSION['roles'] = $data[0]['roles'];
 
             return $data;
         } else {
             echo '<p class="alert alert-danger">Les identifiants ne correspondent pas !</p>';
+        }
+    }
+
+    public static function userAdmin()
+    {
+        if ($_SESSION["LOGGED_USER"] && $_SESSION['roles'] == 1) {
+            $getUsers = UsersManager::getUsers();
+
+            require './view/admin/admin.php';
+
+            return $getUsers;
+        } else {
+            header("Location: ./index.php");
         }
     }
 }

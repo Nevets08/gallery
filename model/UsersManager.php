@@ -18,13 +18,24 @@ class UsersManager extends Manager
         ]);
     }
 
+    public static function getUsers()
+    {
+        $pdo = self::dbConnect();
+
+        $sql = 'SELECT * FROM users ORDER BY signin_date DESC';
+        $getUsers = $pdo->prepare($sql);
+        $getUsers->execute();
+
+        return $getUsers;
+    }
+
     public static function findUser($email)
     {
         $pdo = self::dbConnect();
 
         $sql = 'SELECT * FROM users WHERE email = :email';
         $findUser = $pdo->prepare($sql);
-        $findUser->execute([    
+        $findUser->execute([
             "email" => $email
         ]);
 

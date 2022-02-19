@@ -25,6 +25,7 @@ Aujourd'hui, le projet est en MVP : Minimal Viable product. Ce qui signifie que 
 - Amélioration du design
 - Filtres
 - Optimisation du code
+- Administration des images sensibles
 - ...
 
 ## License

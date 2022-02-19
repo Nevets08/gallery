@@ -15,6 +15,10 @@ if (isset($_GET['action'])) {
         Users::store();
     } else if ($_GET['action'] == 'login') {
         Users::login();
+    } else if ($_GET['action'] == 'adminUsers') {
+        Users::userAdmin();
+    } else if ($_GET['action'] == 'editUserRole') {
+        Users::edit();
     }
 } else {
     Images::index();

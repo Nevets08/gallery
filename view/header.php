@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -23,6 +23,14 @@ require './controller/Images.php';
           <li class="nav-item">
             <a class="nav-link" href="?action=create">Importer</a>
           </li>
+          <?php if (Users::isUserLoggedIn() && $_SESSION['roles'] == 1) : ?>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/gallery/index.php?action=adminUsers"><i class="bi bi-gear"></i> Utilisateurs</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/gallery/index.php?action=adminImages"><i class="bi bi-gear"></i> Images</a>
+            </li>
+          <?php endif; ?>
         </ul>
         <?= Users::isUserLoggedIn() ? '<span class="navbar-text">' . $_SESSION['name'] . ' ' . $_SESSION['lastname'] . '</span>' .  '<a class="link-danger m-2" href="./view/signout.php">Se déconnecter</a>' : null; ?>
       </div>
