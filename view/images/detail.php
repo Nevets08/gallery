@@ -1,7 +1,6 @@
 <?php ob_start(); ?>
 
 <div class="container">
-
     <?php foreach($imageAuthor as $author) : ?>
         <p>Crée par <strong><?= $author['name'] . ' ' . $author['lastname'] ?></strong></p>
     <?php endforeach; ?>
@@ -16,4 +15,4 @@
 <?php
 
 $content = ob_get_clean();
-require 'home.php';
+require './view/home.php';

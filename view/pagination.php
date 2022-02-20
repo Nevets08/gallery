@@ -10,7 +10,6 @@
             <?php if (($selectImages->rowCount()) >= Images::$imagesPerPage) : ?>
                 <a class="btn btn-primary" href="index.php?page=<?= Images::$currentPage + 1 ?>">Page suivante</a>
             <?php endif; ?>
-
         </div>
     </div>
 </div>

@@ -5,7 +5,6 @@ session_start();
 require './controller/Users.php';
 require './controller/Images.php';
 
-
 ?>
 
 <header>
@@ -18,21 +17,21 @@ require './controller/Images.php';
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="/gallery/index.php">Accueil</a>
+            <a class="nav-link" aria-current="page" href="./index.php">Accueil</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="?action=create">Importer</a>
           </li>
           <?php if (Users::isUserLoggedIn() && $_SESSION['roles'] == 1) : ?>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/gallery/index.php?action=adminUsers"><i class="bi bi-gear"></i> Utilisateurs</a>
+              <a class="nav-link" aria-current="page" href="./index.php?action=adminUsers"><i class="bi bi-gear"></i> Utilisateurs</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="/gallery/index.php?action=adminImages"><i class="bi bi-gear"></i> Images</a>
+              <a class="nav-link" aria-current="page" href="./index.php?action=adminImages"><i class="bi bi-gear"></i> Images</a>
             </li>
           <?php endif; ?>
         </ul>
-        <?= Users::isUserLoggedIn() ? '<span class="navbar-text">' . $_SESSION['name'] . ' ' . $_SESSION['lastname'] . '</span>' .  '<a class="link-danger m-2" href="./view/signout.php">Se déconnecter</a>' : null; ?>
+        <?= Users::isUserLoggedIn() ? '<span class="navbar-text">' . $_SESSION['name'] . ' ' . $_SESSION['lastname'] . '</span>' .  '<a class="link-danger m-2" href="./view/account/signout.php">Se déconnecter</a>' : null; ?>
       </div>
     </div>
   </nav>

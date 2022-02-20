@@ -45,4 +45,4 @@
 <?php
 
 $content = ob_get_clean();
-require 'home.php';
+require './view/home.php';

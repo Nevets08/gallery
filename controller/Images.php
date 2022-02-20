@@ -19,8 +19,8 @@ class Images
 
         $selectImages = ImagesManager::getImages(self::$imagesPerPage, $minimumLimit);
 
-        require './view/searchForm.php';
-        require './view/imageResults.php';
+        require './view/search/form.php';
+        require './view/images/results.php';
 
         return $selectImages;
     }
@@ -59,8 +59,8 @@ class Images
         if (isset($_POST['search']) && !empty($_POST['search'])) {
             $searchImages = ImagesManager::searchImages($_POST['search']);
 
-            require './view/searchForm.php';
-            require './view/searchResults.php';
+            require './view/search/form.php';
+            require './view/search/results.php';
 
             return $searchImages;
         } else {
@@ -76,7 +76,7 @@ class Images
 
             $details = [$detailImage, $imageAuthor];
 
-            require './view/imageDetail.php';
+            require './view/images/detail.php';
 
             return $details;
         }

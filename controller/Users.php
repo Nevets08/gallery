@@ -7,9 +7,9 @@ class Users
     public static function index()
     {
         if (isset($_SESSION['LOGGED_USER'])) {
-            require './view/imagesForm.php';
+            require './view/images/form.php';
         } else {
-            require './view/createAccountForm.php';
+            require './view/account/createAccountForm.php';
         }
     }
 
@@ -18,7 +18,7 @@ class Users
         $findUser = UsersManager::findUser($_POST['email']);
 
         if ($findUser->rowCount() >= 1) {
-            require './view/createAccountForm.php';
+            require './view/account/createAccountForm.php';
             echo '<div class="container"><p class="alert alert-danger" role="alert">Erreur : cette adresse email existe déjà !</p></div>';
             return;
         } else {
@@ -34,7 +34,7 @@ class Users
             } else {
                 echo '<div class="container"><p class="alert alert-danger" role="alert">Erreur : les mots de passes ne correspondent pas.</p></div>';
 
-                require './view/createAccountForm.php';
+                require './view/account/createAccountForm.php';
             }
         }
     }
@@ -60,7 +60,7 @@ class Users
 
     public static function login()
     {
-        require './view/loginForm.php';
+        require './view/account/loginForm.php';
 
         if (isset($_POST['email']) && isset($_POST['password'])) {
             $findUser = UsersManager::findUser($_POST['email']);
@@ -112,7 +112,7 @@ class Users
         if ($_SESSION["LOGGED_USER"] && $_SESSION['roles'] == 1) {
             $getUsers = UsersManager::getUsers();
 
-            require './view/admin/admin.php';
+            require './view/admin/users.php';
 
             return $getUsers;
         } else {
