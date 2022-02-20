@@ -41,9 +41,16 @@ class Users
 
     public static function edit()
     {
-        UsersManager::editRole($_POST['id'], $_POST['roles']);
+        if (isset($_POST['roles']) && isset($_POST['id']) && $_POST['roles'] != 'delete') {
+            UsersManager::editRole($_POST['id'], $_POST['roles']);
 
-        header("Location: ./index.php?action=adminUsers");
+            header("Location: ./index.php?action=adminUsers");
+            return;
+        } else {
+            UsersManager::deleteUser($_POST['id']);
+            header("Location: ./index.php?action=adminUsers");
+            return;
+        }
     }
 
     public static function isUserLoggedIn(): bool

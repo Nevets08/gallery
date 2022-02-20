@@ -4,6 +4,17 @@ require_once 'Manager.php';
 
 class UsersManager extends Manager
 {
+    public static function getUsers()
+    {
+        $pdo = self::dbConnect();
+
+        $sql = 'SELECT * FROM users ORDER BY signin_date DESC';
+        $getUsers = $pdo->prepare($sql);
+        $getUsers->execute();
+
+        return $getUsers;
+    }
+
     public static function insertUser($name, $lastname, $email, $password)
     {
         $pdo = self::dbConnect();
@@ -32,17 +43,6 @@ class UsersManager extends Manager
         return $editUser;
     }
 
-    public static function getUsers()
-    {
-        $pdo = self::dbConnect();
-
-        $sql = 'SELECT * FROM users ORDER BY signin_date DESC';
-        $getUsers = $pdo->prepare($sql);
-        $getUsers->execute();
-
-        return $getUsers;
-    }
-
     public static function findUser($email)
     {
         $pdo = self::dbConnect();
@@ -54,5 +54,16 @@ class UsersManager extends Manager
         ]);
 
         return $findUser;
+    }
+
+    public static function deleteUser($id)
+    {
+        $pdo = self::dbConnect();
+
+        $sql = 'DELETE FROM users WHERE users.id = :id';
+        $deleteUser = $pdo->prepare($sql);
+        $deleteUser->execute([
+            "id" => $id
+        ]);
     }
 }

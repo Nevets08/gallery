@@ -13,7 +13,7 @@
                 </p>
             </div>
 
-            <div class="d-inline d-flex justify-center">
+            <div class="d-flex">
                 <form action="?action=editUserRole" method="POST">
                     <label for="Rôles">Modifier</label>
 
@@ -23,8 +23,9 @@
                         <option value="delete">Supprimer</option>
                     </select>
 
-                    <input type="hidden" name="id" value="<?= $getUser['id'] ?>"/>
+                    <input type="hidden" name="id" value="<?= $getUser['id'] ?>" />
                 </form>
+
             </div>
         </div>
     <?php endforeach; ?>
