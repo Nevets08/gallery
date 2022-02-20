@@ -41,7 +41,9 @@ class Users
 
     public static function edit()
     {
-        echo 'yo';
+        UsersManager::editRole($_POST['id'], $_POST['roles']);
+
+        header("Location: ./index.php?action=adminUsers");
     }
 
     public static function isUserLoggedIn(): bool

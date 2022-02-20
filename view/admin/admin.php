@@ -14,14 +14,16 @@
             </div>
 
             <div class="d-inline d-flex justify-center">
-                <form action="?action=editUserRole" method="get">
+                <form action="?action=editUserRole" method="POST">
                     <label for="Rôles">Modifier</label>
 
-                    <select class="form-select" id="Rôles" onchange="submit();">
-                        <option value=" <?= $getUser['roles'] == 1 ? 'Administrateur' : 'Utilisateur' ?>"><?= $getUser['roles'] == 1 ? 'Administrateur' : 'Utilisateur' ?></option>
-                        <option value="<?= $getUser['roles'] == 1 ? 'Utilisateur' : 'Administrateur' ?>"><?= $getUser['roles'] == 1 ? 'Utilisateur' : 'Administrateur' ?></option>
+                    <select name="roles" class="form-select" id="Rôles" onchange="submit();">
+                        <option value="<?= $getUser['roles'] == 1 ? 1 : 0 ?>"><?= $getUser['roles'] == 1 ? 'Administrateur' : 'Utilisateur' ?></option>
+                        <option value="<?= $getUser['roles'] == 1 ? 0 : 1 ?>"><?= $getUser['roles'] == 1 ? 'Utilisateur' : 'Administrateur' ?></option>
                         <option value="delete">Supprimer</option>
                     </select>
+
+                    <input type="hidden" name="id" value="<?= $getUser['id'] ?>"/>
                 </form>
             </div>
         </div>

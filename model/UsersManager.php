@@ -18,6 +18,20 @@ class UsersManager extends Manager
         ]);
     }
 
+    public static function editRole($id, $roles)
+    {
+        $pdo = self::dbConnect();
+
+        $sql = 'UPDATE users SET roles = :roles WHERE users.id = :id';
+        $editUser = $pdo->prepare($sql);
+        $editUser->execute([
+            "id" => $id,
+            "roles" => $roles
+        ]);
+
+        return $editUser;
+    }
+
     public static function getUsers()
     {
         $pdo = self::dbConnect();
