@@ -1,7 +1,7 @@
 <?php
 
 require './view/header.php';
-
+// faire un switch ou autre
 if (isset($_GET['action'])) {
     if ($_GET['action'] == 'create') {
         Users::index();
@@ -19,6 +19,10 @@ if (isset($_GET['action'])) {
         Users::userAdmin();
     } else if ($_GET['action'] == 'editUserRole') {
         Users::edit();
+    } else if ($_GET['action'] == 'adminImages') {
+        Images::imagesAdmin();
+    } else if ($_GET['action'] == 'imagesEditValidation') {
+        Images::validateImageAdmin();
     }
 } else {
     Images::index();

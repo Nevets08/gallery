@@ -1,13 +1,19 @@
 <?php ob_start(); ?>
 
 <div class="container">
-    <?php foreach($imageAuthor as $author) : ?>
+    <?php foreach ($imageAuthor as $author) : ?>
         <p>Crée par <strong><?= $author['name'] . ' ' . $author['lastname'] ?></strong></p>
     <?php endforeach; ?>
 
     <?php foreach ($detailImage as $image) : ?>
-        <a href="./public/upload/<?= $image['url'] ?>" class="btn btn-primary mb-3" download><i class="bi bi-download"></i> Télécharger</a>
-        <p>Mot clés : <?= $image['keywords'] ?></p>
+
+        <a href="./public/upload/<?= $image['url'] ?>" class="btn btn-primary" download><i class="bi bi-download"></i> Télécharger</a>
+
+        <?php if (Users::isUserLoggedIn() && $_SESSION['roles'] == 1) : ?>
+            <a class="btn btn-danger" href="?action=imagesEditValidation&validate=2&id=<?= $image['id'] ?>">Supprimer</a>
+        <?php endif; ?>
+
+        <p class="mt-2">Mot clés : <?= $image['keywords'] ?></p>
         <img class="img-fluid" src="./public/upload/<?= $image['url'] ?>">
     <?php endforeach; ?>
 </div>

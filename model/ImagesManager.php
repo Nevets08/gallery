@@ -68,4 +68,18 @@ class ImagesManager extends Manager
 
         return $imageAuthor;
     }
+
+    public static function adminImagesValidation($id, $active)
+    {
+        $pdo = self::dbConnect();
+
+        $sql = 'UPDATE images SET active = :active WHERE images.id = :id';
+        $imagesSuccess = $pdo->prepare($sql);
+        $imagesSuccess->execute([
+            "id" => $id,
+            "active" => $active
+        ]);
+
+        return $imagesSuccess;
+    }
 }

@@ -81,4 +81,24 @@ class Images
             return $details;
         }
     }
+
+    public static function imagesAdmin()
+    {
+        if ($_SESSION["LOGGED_USER"] && $_SESSION['roles'] == 1) {
+            $selectImages = ImagesManager::getImages(50, 1);
+            require './view/admin/images.php';
+            return $selectImages;
+        } else {
+            header("Location: ./index.php");
+        }
+    }
+
+    public static function validateImageAdmin()
+    {
+        if ($_SESSION["LOGGED_USER"] && $_SESSION['roles'] == 1) {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                ImagesManager::adminImagesValidation($_GET['id'], $_GET['validate']);
+            }
+        }
+    }
 }

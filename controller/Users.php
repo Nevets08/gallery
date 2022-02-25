@@ -41,15 +41,17 @@ class Users
 
     public static function edit()
     {
-        if (isset($_POST['roles']) && isset($_POST['id']) && $_POST['roles'] != 'delete') {
-            UsersManager::editRole($_POST['id'], $_POST['roles']);
+        if ($_SESSION["LOGGED_USER"] && $_SESSION['roles'] == 1) {
+            if (isset($_POST['roles']) && isset($_POST['id']) && $_POST['roles'] != 'delete') {
+                UsersManager::editRole($_POST['id'], $_POST['roles']);
 
-            header("Location: ./index.php?action=adminUsers");
-            return;
-        } else {
-            UsersManager::deleteUser($_POST['id']);
-            header("Location: ./index.php?action=adminUsers");
-            return;
+                header("Location: ./index.php?action=adminUsers");
+                return;
+            } else {
+                UsersManager::deleteUser($_POST['id']);
+                header("Location: ./index.php?action=adminUsers");
+                return;
+            }
         }
     }
 
