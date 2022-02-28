@@ -21,8 +21,8 @@ Aujourd'hui, le projet est en MVP : Minimal Viable product. Ce qui signifie que 
 
 ## Todo
 
+- (priorité) Amélioration de l'affichage des images
 - (priorité) Suppression d'une image dans le dossier upload
-- (priorité) Administration des images sensibles
 
 - Profils
 - Amélioration du design

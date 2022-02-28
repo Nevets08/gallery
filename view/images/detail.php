@@ -1,11 +1,11 @@
 <?php ob_start(); ?>
 
 <div class="container">
-    <?php foreach ($imageAuthor as $author) : ?>
-        <p>Crée par <strong><?= $author['name'] . ' ' . $author['lastname'] ?></strong></p>
-    <?php endforeach; ?>
-
+    
     <?php foreach ($detailImage as $image) : ?>
+        <?php foreach ($imageAuthor as $author) : ?>
+            <p>Crée par <strong><?= $author['name'] . ' ' . $author['lastname'] ?></strong> le <?= $image['createdAt'] ?></p>
+        <?php endforeach; ?>
 
         <a href="./public/upload/<?= $image['url'] ?>" class="btn btn-primary" download><i class="bi bi-download"></i> Télécharger</a>
 

@@ -20,10 +20,10 @@ if (isset($_GET['action'])) {
     } else if ($_GET['action'] == 'editUserRole') {
         Users::edit();
     } else if ($_GET['action'] == 'adminImages') {
-        Images::imagesAdmin();
+        Images::index();
     } else if ($_GET['action'] == 'imagesEditValidation') {
         Images::validateImageAdmin();
     }
 } else {
-    Images::index();
+    Images::indexPagination();
 }

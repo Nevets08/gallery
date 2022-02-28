@@ -7,7 +7,7 @@ class Images
     public static $currentPage;
     public static $imagesPerPage = 5;
 
-    public static function index()
+    public static function indexPagination()
     {
         self::$currentPage = (int)($_GET['page'] ?? 1);
 
@@ -17,12 +17,20 @@ class Images
 
         $minimumLimit = (self::$currentPage - 1) * self::$imagesPerPage;
 
-        $selectImages = ImagesManager::getImages(self::$imagesPerPage, $minimumLimit);
+        $selectImages = ImagesManager::getImagesPagination(self::$imagesPerPage, $minimumLimit);
 
         require './view/search/form.php';
         require './view/images/results.php';
 
         return $selectImages;
+    }
+
+    public static function index()
+    {
+        $allImages = ImagesManager::getImages();
+        require './view/admin/images.php';
+        
+        return $allImages;
     }
 
     public static function store()
@@ -64,7 +72,7 @@ class Images
 
             return $searchImages;
         } else {
-            self::index();
+            self::indexPagination();
         }
     }
 
@@ -85,7 +93,7 @@ class Images
     public static function imagesAdmin()
     {
         if ($_SESSION["LOGGED_USER"] && $_SESSION['roles'] == 1) {
-            $selectImages = ImagesManager::getImages(50, 1);
+            $selectImages = ImagesManager::getImagesPagination(5, 2);
             require './view/admin/images.php';
             return $selectImages;
         } else {
@@ -98,6 +106,7 @@ class Images
         if ($_SESSION["LOGGED_USER"] && $_SESSION['roles'] == 1) {
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 ImagesManager::adminImagesValidation($_GET['id'], $_GET['validate']);
+                header("Location: index.php?action=adminImages");
             }
         }
     }

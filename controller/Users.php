@@ -84,6 +84,8 @@ class Users
                 } else {
                     echo '<p class="alert alert-danger">Les identifiants ne correspondent pas !</p>';
                 }
+            } else {
+                echo '<p class="alert alert-danger">Utilisateur non trouvé !</p>';
             }
         }
     }

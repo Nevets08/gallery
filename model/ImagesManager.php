@@ -4,7 +4,18 @@ require_once 'Manager.php';
 
 class ImagesManager extends Manager
 {
-    public static function getImages($imagesPerPage, $limitMin)
+    public static function getImages()
+    {
+        $pdo = self::dbConnect();
+
+        $sql = 'SELECT * FROM images';
+        $allImages = $pdo->prepare($sql);
+        $allImages->execute();
+
+        return $allImages;
+    }
+
+    public static function getImagesPagination($imagesPerPage, $limitMin)
     {
         $pdo = self::dbConnect();
 
@@ -35,9 +46,9 @@ class ImagesManager extends Manager
         $sql = 'INSERT INTO images (url, keywords, idUser) VALUES (:url, :keywords, :idUser)';
         $insertImages = $pdo->prepare($sql);
         $insertImages->execute([
-            "url" => $url,
-            "keywords" => $keywords,
-            "idUser" => $_SESSION['id']
+            "url" => htmlspecialchars($url),
+            "keywords" => htmlspecialchars($keywords),
+            "idUser" => htmlspecialchars($_SESSION['id'])
         ]);
 
         return $insertImages;
@@ -76,8 +87,8 @@ class ImagesManager extends Manager
         $sql = 'UPDATE images SET active = :active WHERE images.id = :id';
         $imagesSuccess = $pdo->prepare($sql);
         $imagesSuccess->execute([
-            "id" => $id,
-            "active" => $active
+            "id" => htmlspecialchars($id),
+            "active" => htmlspecialchars($active)
         ]);
 
         return $imagesSuccess;

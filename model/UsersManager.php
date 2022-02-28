@@ -22,10 +22,10 @@ class UsersManager extends Manager
         $sql = 'INSERT INTO users (name, lastname, email, password) VALUES (:name, :lastname, :email, :password)';
         $insertUser = $pdo->prepare($sql);
         $insertUser->execute([
-            "name" => $name,
-            "lastname" => $lastname,
-            "email" => $email,
-            "password" => password_hash($password, PASSWORD_BCRYPT)
+            "name" => htmlspecialchars($name),
+            "lastname" => htmlspecialchars($lastname),
+            "email" => htmlspecialchars($email),
+            "password" => htmlspecialchars(password_hash($password, PASSWORD_BCRYPT))
         ]);
     }
 
@@ -36,8 +36,8 @@ class UsersManager extends Manager
         $sql = 'UPDATE users SET roles = :roles WHERE users.id = :id';
         $editUser = $pdo->prepare($sql);
         $editUser->execute([
-            "id" => $id,
-            "roles" => $roles
+            "id" => htmlspecialchars($id),
+            "roles" => htmlspecialchars($roles)
         ]);
 
         return $editUser;
